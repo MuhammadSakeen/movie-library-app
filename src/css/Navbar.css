@@ -1,47 +1,74 @@
-.navbar {
-  background-color: #000000;
+.Navbar {
+  background: rgba(31, 31, 31, 0.6); /* translucent dark bg */
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px); /* adds the glassy blur effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* subtle depth */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* slight divider */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.navbar-brand {
+
+/* Styles for the brand/logo area */
+.navbar-brand a {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #e0e0e0; /* Light gray color for the brand name */
+  text-decoration: none; /* Removes the underline from the link */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
+.navbar-brand a:hover {
+  color: #ffffff; /* Brighter white on hover */
+}
+
+/* Styles for the links container */
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  gap: 2rem; /* Creates space between the links */
 }
 
+/* Styles for individual nav links */
 .nav-link {
+  color: #90caf9; /* A pleasant blue for the links */
+  text-decoration: none;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: color 0.3s ease;
+  position: relative; /* Needed for the animated underline effect */
 }
 
+/* On hover, change the link color */
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
+/* Create the animated underline effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
 
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
+/* Expand the underline on hover */
+.nav-link:hover::after {
+  width: 100%;
+}
 
-  .navbar-links {
-    gap: 1rem;
-  }
+/* Optional: Add a style for the "active" link if you use one */
+.nav-link.active {
+  color: #ffffff;
+}
 
-  .nav-link {
-    padding: 0.5rem;
-  }
+.nav-link.active::after {
+  width: 100%;
 }

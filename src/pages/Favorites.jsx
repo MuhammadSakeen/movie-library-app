@@ -17,11 +17,4 @@ export default function Favorites() {
             </div>
         )
     }
-    
-    // return (
-    //     <div className="favorites-empty">
-    //         <h2>No Favorites Movies Yet!</h2>
-    //         <p>Add Movies and they'll appear Here!</p>
-    //     </div>
-    // )
 }
