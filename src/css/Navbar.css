@@ -72,3 +72,14 @@
 .nav-link.active::after {
   width: 100%;
 }
+
+.navbar-user {
+  margin-left: auto;
+  padding-right: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.welcome-text {
+  margin: 0;
+}
