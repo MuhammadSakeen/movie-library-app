@@ -1,0 +1,70 @@
+/* Full screen center */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  background-color: #121212;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Login box with glassmorphism */
+.login-box {
+  background: rgba(255, 255, 255, 0.02); /* 🔄 toned down */
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* softer shadow */
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* subtle border for glass edge */
+}
+
+/* Input fields */
+.login-box input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.login-box input::placeholder {
+  color: #bbb;
+}
+
+.login-box h2 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+
+.login-box input:focus {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Login button */
+.login-box button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #90caf9;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #64b5f6;
+}

@@ -1,53 +1,59 @@
+/* ==== Navbar Container ==== */
 .Navbar {
-  background: rgba(31, 31, 31, 0.6); /* translucent dark bg */
+  background: rgba(31, 31, 31, 0.6); /* translucent dark */
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(8px); /* adds the glassy blur effect */
-  -webkit-backdrop-filter: blur(8px); /* Safari support */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* subtle depth */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* slight divider */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
-/* Styles for the brand/logo area */
+
+
+/* ==== Logo / Brand ==== */
 .navbar-brand a {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #e0e0e0; /* Light gray color for the brand name */
-  text-decoration: none; /* Removes the underline from the link */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .navbar-brand a:hover {
-  color: #ffffff; /* Brighter white on hover */
+  color: #ffffff;
 }
 
-/* Styles for the links container */
+/* ==== Navigation Links ==== */
 .navbar-links {
   display: flex;
-  gap: 2rem; /* Creates space between the links */
+  gap: 2rem;
 }
 
-/* Styles for individual nav links */
 .nav-link {
-  color: #90caf9; /* A pleasant blue for the links */
+  color: #90caf9;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
-  position: relative; /* Needed for the animated underline effect */
+  position: relative;
 }
 
-/* On hover, change the link color */
 .nav-link:hover {
   color: #ffffff;
 }
 
-/* Create the animated underline effect */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -59,12 +65,10 @@
   transition: width 0.3s ease;
 }
 
-/* Expand the underline on hover */
 .nav-link:hover::after {
   width: 100%;
 }
 
-/* Optional: Add a style for the "active" link if you use one */
 .nav-link.active {
   color: #ffffff;
 }
@@ -73,13 +77,49 @@
   width: 100%;
 }
 
+/* ==== Auth Section (User Info / Buttons) ==== */
 .navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   margin-left: auto;
-  padding-right: 1rem;
-  font-size: 0.9rem;
+  padding-left: 2rem;
+  font-size: 0.95rem;
   color: #fff;
 }
 
+/* Welcome Message */
 .welcome-text {
   margin: 0;
+  color: #e0e0e0;
+}
+
+/* ==== Buttons ==== */
+.navbar-user button {
+  background: #ef5350;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.navbar-user button:hover {
+  background: #d32f2f;
+}
+
+/* Optional: Responsive */
+@media (max-width: 768px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links,
+  .navbar-user {
+    margin-top: 0.5rem;
+    gap: 1rem;
+  }
 }

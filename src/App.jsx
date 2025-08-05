@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import auth from './services/auth'
 
+import Logout from './components/Logout'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 import Home from './pages/Home'
 import NavBar from './components/NavBar'
 import Favorites from './pages/Favorites'
@@ -28,6 +31,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/login" element={<Login/>}/>
           </Routes>
         </main>
       </MovieProvider>
