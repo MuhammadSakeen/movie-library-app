@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import auth from './services/auth'
 
 import Logout from './components/Logout'
+import PrivateRouter from './components/PrivateRouter'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import Home from './pages/Home'
@@ -26,13 +27,13 @@ function App() {
   return (
     <>
       <MovieProvider>
-        <NavBar currentUser = {currentUser}/>
+        <NavBar currentUser={currentUser} />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/signup" element={<SignUp/>}/>
-            <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/favorites" element={ <PrivateRouter> <Favorites /> </PrivateRouter> } />
           </Routes>
         </main>
       </MovieProvider>

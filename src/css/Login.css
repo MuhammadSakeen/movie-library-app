@@ -46,6 +46,12 @@
   margin-bottom: 25px;
 }
 
+.login-box p {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  margin-top: 25px;
+}
 
 .login-box input:focus {
   background: rgba(255, 255, 255, 0.12);
@@ -67,4 +73,44 @@
 
 .login-box button:hover {
   background-color: #64b5f6;
+}
+
+.input-field {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-button {
+  padding: 10px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.switch-auth-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.forgot-pass-text {
+  margin: 10px 0 20px;
+  font-size: 13px;
+  text-align: right;
+}
+
+.auth-link {
+  margin-left: 5px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
 }

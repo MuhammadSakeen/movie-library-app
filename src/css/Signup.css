@@ -28,6 +28,12 @@
   margin-bottom: 25px;
 }
 
+.signup-box p {
+  text-align: center;
+  color: #fff;
+  margin-top: 25px;
+}
+
 /* Input fields */
 .signup-box input {
   width: 100%;
@@ -66,4 +72,38 @@
 
 .signup-box button:hover {
   background-color: #64b5f6;
+}
+
+.input-field {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-button {
+  padding: 10px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.switch-auth-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-link {
+  margin-left: 5px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
 }
