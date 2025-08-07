@@ -9,6 +9,7 @@ export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     const handleLogin = async (e) => {
@@ -29,12 +30,15 @@ export default function Login() {
             alert("please enter your email!")
             return
         }
+        setLoading(true)
         try {
             await sendPasswordResetEmail(auth, email)
             alert("password reset message is sent to your mail")
         } catch (err) {
             console.log(err.message)
             alert("Failed to send reset mail, check your email then try again")
+        } finally {
+            setLoading(false) // 🟢 hide loader
         }
     }
 
@@ -45,9 +49,10 @@ export default function Login() {
                 <input type="email" value={email} className="input-field" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" value={password} className="input-field" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 <p className="forgot-pass-text">
-                    <span onClick={handleForgotPassword} className="auth-link">
+                    <span onClick={!loading ? handleForgotPassword : null} className="auth-link" style={{ opacity: loading ? 0.5 : 1, pointerEvents: loading ? "none" : "auto" }}>
                         Forgot Password?
                     </span>
+                    {loading && "Sending..."}
                 </p>
                 <button type="submit" className="submit-button">Login</button>
                 <p className="switch-auth-text">
@@ -55,6 +60,7 @@ export default function Login() {
                     <Link to="/signup" className="auth-link">SignUp Here</Link>
                 </p>
                 {error && <p style={{ color: "red" }}>{error}</p>}
+                {loading && <div className="loader"></div>}
             </form>
         </div>
     )
