@@ -1,13 +1,20 @@
 import '../css/MovieCard.css'
 import { useMovieContext } from '../contexts/MovieContext'
 
-export default function MovieCard({movie}) {
-    const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
+export default function MovieCard({ movie }) {
+    const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext()
     const favorite = isFavorite(movie.id)
+
     function onFavoriteClick(e) {
+        console.log("Favorite button clicked for movie:", movie.id);
         e.preventDefault()
-        if (favorite) removeFromFavorites(movie.id)
-        else addToFavorites(movie)
+        if (favorite) {
+            console.log("Removing favorite");
+            removeFromFavorites(movie.id)
+        } else {
+            console.log("Adding favorite");
+            addToFavorites(movie)
+        }
     }
 
     return (

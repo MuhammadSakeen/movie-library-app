@@ -1,48 +1,66 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { getFavorites, addFavorite, removeFavorite } from "../services/favorites";
+import { auth } from "../services/firebase";
+import { useEffect, useState, createContext, useContext } from "react";
 
-const MovieContext = createContext()
+const MovieContext = createContext();
 
-export const useMovieContext = () => useContext(MovieContext)
+export function MovieProvider({ children }) {
+    const [favorites, setFavorites] = useState([]);
+    const [userId, setUserId] = useState(null);
 
-export const MovieProvider = ({ children }) => {
-    const [favorites, setFavorites] = useState([])
     useEffect(() => {
-        const storedFavs = localStorage.getItem("favorites")
-        if (storedFavs) setFavorites(JSON.parse(storedFavs))
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUserId(user.uid);
+            } else {
+                setUserId(null);
+                setFavorites([]);
+            }
+        });
+        return unsubscribe;
+    }, []);
 
-    }, [])
+    // Load favorites from Firestore when userId changes
     useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites))
-    }, [favorites])
+        console.log("User ID in context:", userId);
+        if (userId) {
+            getFavorites(userId).then(setFavorites).catch(e => console.error("getFavorites error:", e));
+        } else {
+            setFavorites([]);
+        }
+    }, [userId]);
 
-    const addToFavorites = (movie) => {
-        setFavorites(prev => {
-            if (prev.some(m => m.id === movie.id)) return prev // prevent duplicates
-            return [...prev, {
-                id: movie.id,
-                title: movie.title,
-                release_date: movie.release_date,
-                poster_path: movie.poster_path
-            }]
-        })
+    function isFavorite(movieId) {
+        return favorites.some((movie) => movie.id === movieId);
     }
 
-    const removeFromFavorites = (movieId) => {
-        setFavorites(prev => prev.filter(movie => movie.id !== movieId))
+    async function addToFavorites(movie) {
+        if (!userId) {
+            alert("Please login to add favorites");
+            return;
+        }
+        await addFavorite(userId, movie);
+        setFavorites((prev) => [...prev, movie]);
     }
 
-    const isFavorite = (movieId) => {
-        return favorites.some(movie => movie.id === movieId)
+    async function removeFromFavorites(movieId) {
+        if (!userId) {
+            alert("Please login to remove favorites");
+            return;
+        }
+        const movieToRemove = favorites.find((m) => m.id === movieId);
+        if (!movieToRemove) return;
+        await removeFavorite(userId, movieToRemove);
+        setFavorites((prev) => prev.filter((m) => m.id !== movieId));
     }
-    const value = {
-        favorites,
-        addToFavorites,
-        removeFromFavorites,
-        isFavorite
-    }
+
     return (
-        <MovieContext.Provider value={value}>
+        <MovieContext.Provider value={{ favorites, isFavorite, addToFavorites, removeFromFavorites }}>
             {children}
         </MovieContext.Provider>
-    )
+    );
+}
+
+export function useMovieContext() {
+    return useContext(MovieContext);
 }

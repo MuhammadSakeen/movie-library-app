@@ -20,6 +20,6 @@ export default function PrivateRouter({ children }) {
         return <p>Loading...</p>; // Optional: replace with spinner
     }
     return (
-        user ? children : <Navigate to="login" />
+        user ? children : <Navigate to="/login" />
     )
 }

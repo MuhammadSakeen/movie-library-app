@@ -7,7 +7,7 @@ export default function Logout () {
             await signOut(auth)
             console.log("User Logged Out")
         } catch (err) {
-            console.error("Logout error:", error.message);
+            console.error("Logout error:", err.message);
         }
     }
     return <button onClick={handleLogout}>Logout</button>;
