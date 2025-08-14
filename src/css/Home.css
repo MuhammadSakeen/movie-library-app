@@ -74,7 +74,7 @@
 }
 
 /* Optional responsive adjustment */
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .home {
     padding: 1rem 0;
   }

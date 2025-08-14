@@ -15,7 +15,7 @@ export default function Home() {
                 setMovies(popularmovies)
             } catch (err) {
                 console.log(err)
-                setError("Cannot Load the Movies")
+                setError("Can't Load the Movies")
             } finally {
                 setLoading(false)
             }
