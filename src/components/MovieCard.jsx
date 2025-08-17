@@ -6,7 +6,7 @@ export default function MovieCard({ movie }) {
     const favorite = isFavorite(movie.id)
 
     function onFavoriteClick(e) {
-        console.log("Favorite button clicked for movie:", movie.id);
+        console.log("Favorite button clicked for adding favorite movies:", movie.id);
         e.preventDefault()
         if (favorite) {
             console.log("Removing favorite");
