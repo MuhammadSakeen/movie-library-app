@@ -9,7 +9,7 @@ export default function MovieCard({ movie }) {
         console.log("Favorite button clicked for adding favorite movies:", movie.id);
         e.preventDefault()
         if (favorite) {
-            console.log("Removing favorite");
+            console.log("Removing fav");
             removeFromFavorites(movie.id)
         } else {
             console.log("Adding favorite");
