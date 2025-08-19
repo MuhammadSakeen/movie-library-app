@@ -12,7 +12,7 @@ export default function MovieCard({ movie }) {
             console.log("Removing favorite");
             removeFromFavorites(movie.id)
         } else {
-            console.log("Adding favorite");
+            console.log("Adding fav");
             addToFavorites(movie)
         }
     }
